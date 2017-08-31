@@ -1,0 +1,96 @@
+* {
+  font-family: Helvetica;
+}
+
+body {
+  min-height: 100vh;
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: black;
+}
+
+header {
+  padding: 70px 0px;
+}
+
+.logo {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.initialText {
+	font-size: 20px;
+	color: white;
+	letter-spacing: 1.5px;
+}
+
+.startButtonContainer {
+  margin-top: 175px;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.timerText, .questionText {
+  font-size: 20px;
+  color: white;
+}
+
+.correctText, .wrongText, .timeOutText, .finishedText {
+	font-size: 50px;
+	color: white;
+}
+
+.summaryCorrect, .summaryWrong, .summaryUnanswered {
+  font-size: 20px;
+  color: white;
+}
+
+#timer {
+	color: #7db539;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.answer:hover {
+  background: lightblue;
+}
+
+.answer {
+  padding-top: 12px;
+  height: 45px;
+  width: 250px;
+  color: black;
+  background-color: white;
+  border-radius: 4px;
+  margin-left: auto;
+  margin-right:auto;
+}
+
+.imgWrong, .imgCorrect {
+  margin-top: 40px;
+  width: 250px;
+}
+
+.questionText {
+  margin-bottom: 50px;
+}
+
+.resetButton {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+}
+
+.summaryCorrect {
+  margin-top: 40px;
+}
+
+.summaryCorrect, .summaryWrong, .summaryUnanswered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
