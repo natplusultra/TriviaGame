@@ -27,6 +27,14 @@ $(document).ready(function() {
 				{text: "&lt;script href='bobsaget.js'&gt;", isCorrect: false},
 			]
 		},
+		{
+			question: "How do you create a function in JavaScript?",
+			answers: [
+				{text: "function: eatPizza()", isCorrect: false},
+				{text: "function eatPizza()", isCorrect: true},
+				{text: "function = eatPizza()", isCorrect: false}
+			]
+		},
 		{ 
 			question: "How do you write an IF statement in JavaScript?",
 			answers: [
@@ -35,9 +43,59 @@ $(document).ready(function() {
 				{text: "if i = 5 then", isCorrect: false},
 				{text: "if (i == 5)", isCorrect: true}
 			]
+		},
+		{
+			question: "Is JavaScript case-sensitive?",
+			answers: [
+				{text: "Yes", isCorrect: true},
+				{text: "No", isCorrect: false}
+			]
+		},
+		{
+			question: "To see if three variables are all equal, we would use:",
+			answers: [
+				{text: "A = B = C", isCorrect: false},
+				{text: "A === B === C", isCorrect: false},
+				{text: "(A == B) && (B == C)", isCorrect: true},
+				{text: "(A = B) && (B = C)", isCorrect: false}
+			]
+		},
+		{ 
+			question: "A property is the object-oriented equivalent of:",
+			answers: [
+				{text: "a function", isCorrect: false},
+				{text: "a variable", isCorrect: true},
+				{text: "a reserved word", isCorrect: false},
+				{text: "an object", isCorrect: false}
+			]	
+		},
+		{
+			question: "Where is the correct place to insert a JavaScript?",
+			answers: [
+				{text: "Both the &lt;head&gt; and &lt;body&gt;", isCorrect: true},
+				{text: "The &lt;head&gt; section", isCorrect: false},
+				{text: "The &lt;body&gt; section", isCorrect: false}
+			]
+		},
+		{
+			question: "How does a FOR loop start?",
+			answers: [
+				{text: "for (i <= 5; i++)", isCorrect: false},
+				{text: "for (i = 0; i <= 5)", isCorrect: false},
+				{text: "for (i = 0; i <= 5; i++)", isCorrect: true},
+				{text: "for i = 1 to 5", isCorrect: false}
+			]
+		},
+		{
+			question: "How do you generate a random number and round it up to the next integer?",
+			answers: [
+			 {text: "Math.floor(Math.random())", isCorrect: false},
+			 {text: "Math.round(Math.random())", isCorrect: false},
+			 {text: "Math.ceiling(Math.random())", isCorrect: false},
+			 {text: "Math.ceil(Math.random())", isCorrect: true}
+			]
 		}
 	];
-	// var correctAnswers = ["<script>", "<script src='bobsaget.js'>", "if (i == 5)"];
 
 	
 	function generateHTML() {
@@ -52,7 +110,6 @@ $(document).ready(function() {
 			answerButton.html(questionArray[questionCounter].answers[i].text);
 			$(".mainArea").append(answerButton);
 		}
-		
 	}
 
 	function generateWin() {
@@ -146,10 +203,10 @@ $(document).ready(function() {
 		selectedAnswer = $(this).attr("isCorrect");
 		console.log(selectedAnswer);
 
-		if (selectedAnswer === "true") {
+		if (selectedAnswer === "true") { // evaluates if this is the correct answer
 			clearInterval(clock);
 		 	generateWin();
-		} else {
+		} else { 	// then it's the wrong answer
 			clearInterval(clock);
 			generateLoss();
 		}
