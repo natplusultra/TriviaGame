@@ -26,15 +26,20 @@ header {
 	letter-spacing: 1.5px;
 }
 
-.startButtonContainer {
+.startButton {
   margin-top: 175px;
   max-width: 200px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.timerText, .questionText {
+.timerText {
   font-size: 20px;
+  color: white;
+}
+
+.questionText {
+  font-size: 30px;
   color: white;
 }
 
@@ -59,7 +64,6 @@ header {
 }
 
 .answer {
-  padding-top: 12px;
   height: 45px;
   width: 250px;
   color: black;

@@ -9,7 +9,6 @@ $(document).ready(function() {
 	var counter = 20;
 	var clock;
 	var selecterAnswer;
-
 	var questionArray = [
 		{ 	
 			question: "Inside which HTML element do we put the JavaScript code?",
@@ -38,21 +37,29 @@ $(document).ready(function() {
 			]
 		}
 	];
+	// var correctAnswers = ["<script>", "<script src='bobsaget.js'>", "if (i == 5)"];
 
 	
 	function generateHTML() {
 		var timeRemainingText = "<p class='timerText text-center'>Time Remaining: <span id='timer'>20</span></p>";
-		gameHTML = [timeRemainingText, "<p class='questionText text-center'>" + questionArray[questionCounter].question + "</p>"];
+		var questionText = "<p class='questionText text-center'>" + questionArray[questionCounter].question + "</p>";
+		gameHTML = timeRemainingText + questionText;
+		$(".mainArea").html(gameHTML);
 		for (var i = 0; i < questionArray[questionCounter].answers.length; i++) {
-			gameHTML.push("<p class='answer text-center'>" + questionArray[questionCounter].answers[i].text + "</p>");
+			var answerButton = $("<button>");
+			answerButton.addClass("answer btn btn-block text-center");
+			answerButton.attr("isCorrect", questionArray[questionCounter].answers[i].isCorrect);
+			answerButton.html(questionArray[questionCounter].answers[i].text);
+			$(".mainArea").append(answerButton);
 		}
-		$(".mainArea").html(gameHTML.join(" "));
+		
 	}
 
 	function generateWin() {
 		correct++;
 		var correctAnswerText = "<p class='correctText text-center'>CORRECT!</p>";
-		gameHTML = correctAnswerText + "<img class='center-block imgCorrect' src='assets/images/check.png'>";
+		var imgHTML = "<img class='center-block imgCorrect' src='assets/images/check.png'>";
+		gameHTML = correctAnswerText + imgHTML;
 		$(".mainArea").html(gameHTML);
 		setTimeout(nextDisplay, 3000);  
 	}
@@ -60,7 +67,8 @@ $(document).ready(function() {
 	function generateLoss() {
 		incorrect++;
 		var wrongAnswerText = "<p class='wrongText text-center'>INCORRECT</p>";
-		gameHTML = wrongAnswerText + "<img class = 'center-block imgWrong' src = 'assets/images/x.png'>";
+		var imgHTML = "<img class='center-block imgWrong' src='assets/images/x.png'>";
+		gameHTML = wrongAnswerText + imgHTML;
 		$(".mainArea").html(gameHTML);
 		setTimeout(nextDisplay, 3000); 
 	}
@@ -68,7 +76,8 @@ $(document).ready(function() {
 	function generateLossAtTimeOut() {
 		unanswered++;
 		var timeOutText = "<p class='timeOutText text-center'>TIME'S UP!</p>";
-		gameHTML =  timeOutText + "<img class = 'center-block imgWrong' src = 'assets/images/x.png'>";
+		var imgHTML = "<img class='center-block imgWrong' src='assets/images/x.png'>";
+		gameHTML =  timeOutText + imgHTML;
 		$(".mainArea").html(gameHTML);
 		setTimeout(nextDisplay, 3000);  
 	}
@@ -99,11 +108,12 @@ $(document).ready(function() {
 	}
 
 	function finalScreen() {
-		gameHTML = "<p class='finishedText text-center'>Here's how you did!" + "</p>" 
-			+ "<p class='summaryCorrect text-center'>Correct Answers: " + correct + "</p>" 
-			+ "<p class='summaryWrong text-center'>Wrong Answers: " + incorrect + "</p>" 
-			+ "<p class='summaryUnanswered text-center'>Unanswered: " + unanswered + "</p>" 
-			+ "<p class='text-center resetButtonContainer'><a class='btn btn-primary btn-lg btn-block resetButton' href='#' role='button'>PLAY AGAIN</a></p>";
+		var finishedText = "<p class='finishedText text-center'>Here's how you did!</p>";
+		var summaryCorrectHTML = "<p class='summaryCorrect text-center'>Correct Answers: " + correct + "</p>";
+		var summaryWrongHTML = "<p class='summaryWrong text-center'>Wrong Answers: " + incorrect + "</p>";
+		var summaryUnansweredHTML = "<p class='summaryUnanswered text-center'>Unanswered: " + unanswered + "</p>";
+		var resetButtonHTML = "<button class='resetButton btn btn-primary btn-lg btn-block text-center' type='button'>PLAY AGAIN</button>";
+		gameHTML = finishedText + summaryCorrectHTML + summaryWrongHTML + summaryUnansweredHTML + resetButtonHTML;
 		$(".mainArea").html(gameHTML);
 	}
 
@@ -119,25 +129,24 @@ $(document).ready(function() {
 
 	// Function that creates the start button and initial screen
 	function initialScreen() {
-		startScreen = "<p class='initialText text-center'>Test your knowledge of JavaScript fundamentals!</p>"
-			+ "<p class='initialText text-center'>There are 10 questions total and you will have 20 seconds to answer each one. Good luck!</p>"
-			+ "<p class='text-center startButtonContainer'><a class='btn btn-primary btn-lg btn-block start-button' href='#' role='button'>Start Quiz</a></p>";
+		var initialText = "<p class='initialText text-center'>Test your knowledge of JavaScript fundamentals!</p> <p class='initialText text-center'>There are 10 questions total and you will have 20 seconds to answer each one. Good luck!</p>";
+		var startButtonHTML = "<button class='startButton btn btn-primary btn-lg btn-block text-center' type='button'>Start Quiz</button>";
+		startScreen = initialText + startButtonHTML;
 		$(".mainArea").html(startScreen);
 	}
 
 	// When the start button is clicked:
-	$("body").on("click", ".start-button", function(event){ 
+	$("body").on("click", ".startButton", function(event){ 
 		generateHTML();
 		timer();
 	});
 
 	// When an answer is clicked:
 	$("body").on("click", ".answer", function(event){
-		//answeredQuestion = true;
-		selectedAnswer = $(this).val("isCorrect"); //figure out how to get value of isCorrect property
+		selectedAnswer = $(this).attr("isCorrect");
 		console.log(selectedAnswer);
 
-		if (selectedAnswer === true) {
+		if (selectedAnswer === "true") {
 			clearInterval(clock);
 		 	generateWin();
 		} else {
