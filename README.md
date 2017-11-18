@@ -8,3 +8,5 @@ A  JavaScript trivia game that uses JavaScript timing events for each question a
 * If the player runs out of time, the app tells the player that time is up, waits a few seconds, then shows the next question.
 * If the player chooses the wrong answer, the app tells the player they selected the wrong option, waits a few seconds, then shows the next question.
 * When there are no remaining questions, the final screen shows the number of correct answers, incorrect answers, and an option to restart the game (without reloading the page).
+
+![qWiz Screen Shot 1](https://github.com/natplusultra/Burger/blob/master/public/assets/img/burger_shot.png) 
